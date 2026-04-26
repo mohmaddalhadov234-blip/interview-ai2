@@ -193,7 +193,7 @@ export default function InterviewAI() {
     return (
       <div style={{ minHeight: "100vh", background: isDark ? "linear-gradient(135deg, #070711 0%, #0D0D1A 50%, #070711 100%)" : "linear-gradient(135deg, #F0F4FF 0%, #FAFBFF 50%, #F0F4FF 100%)", fontFamily: "'DM Sans', sans-serif", color: isDark ? "#E8E8F0" : "#1A1A2E", position: "relative", overflow: "hidden" }}>
         <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-        <style>{@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}}</style>
+        <style>{`@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}`}</style>
 
         <div style={{ position: "fixed", width: "600px", height: "600px", borderRadius: "50%", background: "#4F6EF7", filter: "blur(120px)", opacity: 0.12, top: "-200px", left: "-200px" }} />
         <div style={{ position: "fixed", width: "600px", height: "600px", borderRadius: "50%", background: "#F5A623", filter: "blur(120px)", opacity: 0.12, bottom: "-200px", right: "-200px" }} />
