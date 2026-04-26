@@ -195,14 +195,28 @@ export default function App() {
         </div>
 
         <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "2px", opacity: 0.4, textTransform: "uppercase", marginBottom: 12 }}>Твой уровень</p>
-        <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
-          {LEVELS.map((lvl, i) => (
-            <button key={i} onClick={() => setSelectedLevel(i)}
-        style={{ flex: 1, padding: "12px 8px", background: selectedLevel === i ? "linear-gradient(135deg,#4F6EF7,#A855F7)" : cardBg, border: 1px solid ${selectedLevel === i ? "transparent" : cardBorder}, borderRadius: 12, color: textColor, fontWeight: 600, cursor: "pointer", fontSize: 14, opacity: selectedLevel === i ? 1 : 0.55 }}
-              {["🌱", "🔥", "💎"][i]} {lvl}
-            </button>
-          ))}
-        </div>
+      <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
+  {LEVELS.map((lvl, i) => (
+    <button 
+      key={i} 
+      onClick={() => setSelectedLevel(i)} 
+      style={{ 
+        flex: 1, 
+        padding: "12px 8px", 
+        background: selectedLevel === i ? "linear-gradient(135deg,#4F6EF7,#A855F7)" : cardBg, 
+        border: `1px solid ${selectedLevel === i ? "transparent" : cardBorder}`, 
+        borderRadius: 12, 
+        color: textColor, 
+        fontWeight: 600, 
+        cursor: "pointer", 
+        fontSize: 14, 
+        opacity: selectedLevel === i ? 1 : 0.55 
+      }}
+    >
+      {["🌱", "🔥", "💎"][i]} {lvl}
+    </button>
+  ))}
+</div>
 
         <button onClick={startInterview} disabled={!selectedJob}
           style={{ width: "100%", padding: 17, background: selectedJob ? "linear-gradient(135deg,#4F6EF7,#A855F7)" : cardBg, border: "none", borderRadius: 16, color: selectedJob ? "#fff" : "rgba(128,128,128,0.5)", fontSize: 16, fontWeight: 700, cursor: selectedJob ? "pointer" : "not-allowed" }}>
