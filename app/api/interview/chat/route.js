@@ -2,9 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
   try {
-    const { messages, profession } = await req.json();
-
-    const systemPrompt = `Ты опытный HR-менеджер, проводишь собеседование на позицию "${profession}". Говори только по-русски. Задавай по одному вопросу за раз. После ответа кратко оцени и задай следующий вопрос. Максимум 10 вопросов.`;
+    const { system, messages } = await req.json();
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -16,16 +14,23 @@ export async function POST(req) {
       body: JSON.stringify({
         model: 'claude-3-5-sonnet-20241022',
         max_tokens: 1000,
-        system: systemPrompt,
+        system: system,
         messages: messages,
       }),
     });
+
+    if (!response.ok) {
+      const err = await response.text();
+      console.error('Claude error:', err);
+      return NextResponse.json({ message: 'Ошибка AI' });
+    }
 
     const data = await response.json();
     const text = data.content?.[0]?.text || 'Ошибка AI';
 
     return NextResponse.json({ success: true, message: text });
   } catch (error) {
-    return NextResponse.json({ error: 'Ошибка сервера' }, { status: 500 });
+    console.error('Server error:', error);
+    return NextResponse.json({ message: 'Ошибка сервера' }, { status: 500 });
   }
 }
