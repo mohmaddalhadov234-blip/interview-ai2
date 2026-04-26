@@ -198,7 +198,7 @@ export default function App() {
         <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
           {LEVELS.map((lvl, i) => (
             <button key={i} onClick={() => setSelectedLevel(i)}
-              style={{ flex: 1, padding: "12px 8px", background: selectedLevel === i ? "linear-gradient(135deg,#4F6EF7,#A855F7)" : cardBg, border: "1px solid " + (selectedLevel === i ? "transparent" : cardBorder), borderRadius: 12, color: textColor, fontWeight: 600, cursor: "pointer", fontSize: 14, opacity: selectedLevel === i ? 1 : 0.55 }}>
+        style={{ flex: 1, padding: "12px 8px", background: selectedLevel === i ? "linear-gradient(135deg,#4F6EF7,#A855F7)" : cardBg, border: 1px solid ${selectedLevel === i ? "transparent" : cardBorder}, borderRadius: 12, color: textColor, fontWeight: 600, cursor: "pointer", fontSize: 14, opacity: selectedLevel === i ? 1 : 0.55 }}
               {["🌱", "🔥", "💎"][i]} {lvl}
             </button>
           ))}
