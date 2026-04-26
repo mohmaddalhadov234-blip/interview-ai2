@@ -4,29 +4,30 @@ export async function POST(req) {
   try {
     const { system, messages } = await req.json();
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
+        'Authorization': `Bearer ${process.env.ANTHROPIC_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'claude-3-5-sonnet-20241022',
+        model: 'anthropic/claude-3.5-sonnet',
         max_tokens: 1000,
-        system: system,
-        messages: messages,
+        messages: [
+          { role: 'system', content: system },
+          ...messages,
+        ],
       }),
     });
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('Claude error:', err);
+      console.error('OpenRouter error:', err);
       return NextResponse.json({ message: 'Ошибка AI' });
     }
 
     const data = await response.json();
-    const text = data.content?.[0]?.text || 'Ошибка AI';
+    const text = data.choices?.[0]?.message?.content || 'Ошибка AI';
 
     return NextResponse.json({ success: true, message: text });
   } catch (error) {
