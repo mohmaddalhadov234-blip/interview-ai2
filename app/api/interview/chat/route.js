@@ -4,7 +4,7 @@ export async function POST(req) {
   try {
     const { messages, profession } = await req.json();
 
-    const systemPrompt = Ты опытный HR-менеджер, проводишь собеседование на позицию "${profession}". Говори только по-русски. Задавай по одному вопросу за раз. После ответа кратко оцени и задай следующий вопрос. Максимум 10 вопросов.;
+    const systemPrompt = `Ты опытный HR-менеджер, проводишь собеседование на позицию "${profession}". Говори только по-русски. Задавай по одному вопросу за раз. После ответа кратко оцени и задай следующий вопрос. Максимум 10 вопросов.`;
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
